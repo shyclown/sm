@@ -7,7 +7,6 @@ export const ProtectedRoute: FC<{
   user: UserSession | null;
 }> = ({ redirectPath, user }) => {
   if (!user?.sl_token) {
-    console.log("protected");
     return <Navigate to={redirectPath} replace />;
   }
   return <Outlet />;
