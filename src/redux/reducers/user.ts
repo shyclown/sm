@@ -65,15 +65,16 @@ const userSlice = createSlice({
       state.session = null;
     },
   },
-  extraReducers: {
-    [fetchSession.pending.type]: (state) => {
-      state.session = null;
-      state.loading = "pending";
-    },
-    [fetchSession.fulfilled.type]: (state, action) => {
-      state.loading = "idle";
-      state.session = action.payload;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchSession.pending, (state) => {
+        state.session = null;
+        state.loading = "pending";
+      })
+      .addCase(fetchSession.fulfilled, (state, action) => {
+        state.loading = "idle";
+        state.session = action.payload;
+      });
   },
 });
 
