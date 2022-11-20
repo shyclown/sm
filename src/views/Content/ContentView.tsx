@@ -92,35 +92,49 @@ export const ContentView: FC = () => {
     <>
       <Navigation>
         <input
+          data-testid="search-names-input"
           type="text"
           onChange={(e) => setSearchName(e.target.value)}
           placeholder={"Search senders"}
           defaultValue={searchName || ""}
         />
-        <div>
+        <div data-testid="change-page-control-wrap">
           <strong style={{ padding: "0 16px" }}>Page:</strong>
-          <button onClick={() => setPage(page - 1)}>-</button>
+          <button
+            data-testid="previous-page-button"
+            onClick={() => setPage(page - 1)}
+          >
+            -
+          </button>
           <strong style={{ padding: "0 16px" }}>{page}</strong>
-          <button onClick={() => setPage(page + 1)}>+</button>
+          <button
+            data-testid="next-page-button"
+            onClick={() => setPage(page + 1)}
+          >
+            +
+          </button>
         </div>
-        <div>
+        <div data-testid="change-order-control-wrap">
           <strong style={{ padding: "0 16px" }}>Order:</strong>
           <button
+            data-testid="reverse-order-new-first-button"
             disabled={!reverseOrder}
             onClick={() => setReverse(!reverseOrder)}
           >
             New First
           </button>
           <button
+            data-testid="reverse-order-old-first-button"
             disabled={reverseOrder}
             onClick={() => setReverse(!reverseOrder)}
           >
             Old First
           </button>
         </div>
-        <div>
+        <div data-testid="search-in-messages-wrap">
           <strong style={{ padding: "0 16px" }}>Search In Messages:</strong>
           <input
+            data-testid="search-content-input"
             type="text"
             onChange={(e) => setSearchContent(e.target.value)}
             defaultValue={searchContent || ""}
@@ -131,6 +145,7 @@ export const ContentView: FC = () => {
         <Names>
           {displayedNames.map((name, index) => (
             <SenderName
+              data-testid="results-sender-name"
               key={name}
               selected={selected}
               onClick={setSelected}
@@ -141,7 +156,7 @@ export const ContentView: FC = () => {
         </Names>
         <Messages>
           {displayedMessages.map((post) => (
-            <Message key={post.id} post={post} />
+            <Message data-testid="results-messages" key={post.id} post={post} />
           ))}
         </Messages>
       </Content>
