@@ -25,23 +25,38 @@ export const LoginView: FC = () => {
   };
 
   return (
-    <Card>
-      <form onSubmit={handleSubmitForm}>
-        <LoginForm>
-          Login
-          <input
-            type={"hidden"}
-            name={"client_id"}
-            value={"ju16a6m81mhid5ue1z3v2g0uh"}
-          />
-          <Input label={"Name: "} name={"name"} type={"text"} required />
-          <Input label={"Email: "} name={"email"} type={"email"} required />
-          <StyledButton type="submit">GO</StyledButton>
-        </LoginForm>
-      </form>
-    </Card>
+    <Center>
+      <LoginCard>
+        <form onSubmit={handleSubmitForm}>
+          <LoginForm>
+            Login
+            <input
+              type={"hidden"}
+              name={"client_id"}
+              value={"ju16a6m81mhid5ue1z3v2g0uh"}
+            />
+            <Input label={"Name: "} name={"name"} type={"text"} required />
+            <Input label={"Email: "} name={"email"} type={"email"} required />
+            <StyledButton type="submit">GO</StyledButton>
+          </LoginForm>
+        </form>
+      </LoginCard>
+    </Center>
   );
 };
+
+const LoginCard = styled(Card)`
+  max-width: 300px;
+`;
+
+const Center = styled.div`
+  background-color: antiquewhite;
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  align-content: center;
+  justify-items: center;
+`;
 
 const StyledButton = styled.button`
   padding: 8px 16px;

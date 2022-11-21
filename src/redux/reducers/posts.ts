@@ -18,12 +18,18 @@ export const fetchPosts = createAsyncThunk(
           },
         }
       );
+      if (response.status === 403) {
+        // TODO:
+        dispatch(userSlice.actions.removeSession());
+        return { posts: [] as Post[], page: null };
+        // throw new Error("403 is unacceptable for me!");
+      }
       const posts = await response.json();
       return posts.data;
     } catch (error) {
       // TODO: If request failed
       // it is possible that token is no longer valid, so we remove session
-      dispatch(userSlice.actions.removeSession());
+      // dispatch(userSlice.actions.removeSession());
     }
   }
 );
